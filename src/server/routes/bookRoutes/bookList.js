@@ -21,7 +21,6 @@ module.exports = function(req, res, next) {
     });
   })
   .then(function() {
-    console.log(tableData);
     return tableData;
   });
 };
