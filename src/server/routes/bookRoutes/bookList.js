@@ -2,26 +2,26 @@ var bookQueries = require('../../queries/bookQueries');
 var authorQueries = require('../../queries/authorQueries');
 
 module.exports = function(req, res, next) {
-  var bookData;
-  var authorData;
-  var bookCount;
+  var tableData = {
+    bookData: [],
+    authorData: []
+  };
   return bookQueries.allBooks()
   .then(function(data) {
-    bookData = data;
+    return data.forEach(function(el, ind, arr) {
+      tableData.bookData.push(el);
+    });
   })
   .then(function() {
     return authorQueries.authorsByBook()
     .then(function(data) {
-      authorData = data;
+      return data.forEach(function(el, ind, arr) {
+        tableData.authorData.push(el);
+      });
     });
   })
   .then(function() {
-    return bookQueries.bookCount()
-    .then(function(data) {
-      bookCount = data[0].count;
-    });
-  })
-  .then(function() {
-    res.render('bookViews/bookList', {books: bookData, authors: authorData, bookCount: bookCount});
+    console.log(tableData);
+    return tableData;
   });
 };
