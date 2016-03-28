@@ -3,7 +3,7 @@ var router = express.Router();
 var bookList = require('./bookRoutes/bookList');
 
 router.get('/', function(req, res, next) {
-  bookList();
+  return bookList(req, res, next);
 });
 
 

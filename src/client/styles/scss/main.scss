@@ -3,14 +3,35 @@
 @import "base/base";
 
 header {
-  @include outer-container;
+  @include outer-container(100%);
     .logo { @include span-columns(1);}
     .company-name { @include span-columns(3); }
 }
 
 .container {
-  @include outer-container;
+  @include outer-container(100%);
     .hero-link {
       @include span-columns(6);
       text-align: center;}
+    aside { @include span-columns(1); }
+    .book-list {
+      @include span-columns(11);
+      article {
+        @include row();
+        margin-bottom: 2rem;
+        border: .1rem solid gray;
+        border-radius: 1rem;
+        padding: 1rem;
+        img {
+          @include span-columns(2 of 10);
+          width: 8rem;
+          height: 12rem;
+        }
+        .div {
+          @include span-columns(8 of 10);
+        }
+      }
+
+
+    }
 }

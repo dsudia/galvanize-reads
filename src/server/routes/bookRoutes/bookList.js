@@ -6,13 +6,11 @@ module.exports = function(req, res, next) {
   var authorData;
   return bookQueries.allBooks()
   .then(function(data) {
-    console.log(data);
     bookData = data;
   })
   .then(function() {
     return authorQueries.authorsByBook()
     .then(function(data) {
-      console.log(data);
       authorData = data;
     });
   })

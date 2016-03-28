@@ -195,7 +195,7 @@ picture {
   max-width: 100%; }
 
 header {
-  max-width: 1200px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto; }
   header::after {
@@ -218,7 +218,7 @@ header {
       margin-right: 0; }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto; }
   .container::after {
@@ -233,3 +233,43 @@ header {
     text-align: center; }
     .container .hero-link:last-child {
       margin-right: 0; }
+  .container aside {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    .container aside:last-child {
+      margin-right: 0; }
+  .container .book-list {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 91.4702%; }
+    .container .book-list:last-child {
+      margin-right: 0; }
+    .container .book-list article {
+      display: block;
+      margin-bottom: 2rem;
+      border: .1rem solid gray;
+      border-radius: 1rem;
+      padding: 1rem; }
+      .container .book-list article::after {
+        clear: both;
+        content: "";
+        display: table; }
+      .container .book-list article img {
+        float: left;
+        display: block;
+        margin-right: 2.84259%;
+        width: 17.72593%;
+        width: 8rem;
+        height: 12rem; }
+        .container .book-list article img:last-child {
+          margin-right: 0; }
+      .container .book-list article .div {
+        float: left;
+        display: block;
+        margin-right: 2.84259%;
+        width: 79.43148%; }
+        .container .book-list article .div:last-child {
+          margin-right: 0; }

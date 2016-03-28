@@ -1,0 +1,34 @@
+{% extends '../layout.html' %}
+
+{% block title %}{% endblock %}
+{% block content %}
+
+<section class='container'>
+  <aside>
+    <nav>
+      <ul>
+        <a href='/books'><li>Books</li></a>
+        <a href='/authors'><li>Authors</li></a>
+      </ul>
+    </nav>
+  </aside>
+  <section class='book-list'>
+    {% for book in books %}
+      <article>
+        <img class='book-img' src='{{ book.image_url }}'>
+        <div>
+          <h3>{{ book.title }}</h3>
+          {% for author in authors %}
+            {% if author.book_id === book.id %}
+              <p>{{ author.first_name }} {{ author.last_name }}</p>
+            {% endif %}
+          {% endfor %}
+          <p>Genre: <em>{{ book.genre}}</em></p>
+          <p>{{ book.description }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+</section>
+
+{% endblock %}
