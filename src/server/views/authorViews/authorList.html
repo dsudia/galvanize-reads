@@ -12,16 +12,18 @@
       </ul>
     </nav>
   </aside>
-  <section class='book-list'>
+  <section class='list'>
     {% for author in authors %}
       <article>
-        <img src='{{ author.image_url }}'>
+        <img class='author-img' src='{{ author.image_url }}'>
         <div>
-          <h3>{{ book.name }}</h3>
           <button class='edit'>Edit</button>
           <button class='remove'>Remove</button>
+          <h3>{{ author.first_name }} {{ author.last_name }}</h3>
+          <br>
           <p>{{ author.bio }}</p>
-          <div class='book list'>
+          <div class='author-books'>
+            <p><em>Books:</em></p>
             {% for book in books %}
               {% if book.author_id === author.id %}
                 <p>{{ book.title }}</p>

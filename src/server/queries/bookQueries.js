@@ -10,7 +10,7 @@ module.exports = {
   booksByAuthor: function() {
     return knex('books')
     .select('books.title', 'author_book_rels.author_id')
-    .orderBy('books.title');
+    .join('author_book_rels', 'books.id', 'author_book_rels.book_id');
   }
 
 

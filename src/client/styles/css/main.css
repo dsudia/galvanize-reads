@@ -249,36 +249,49 @@ header {
       border: 1px solid gray;
       text-align: center;
       margin-bottom: 2rem; }
-  .container .book-list, .container .author-list {
+  .container .list {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 82.94039%; }
-    .container .book-list:last-child, .container .author-list:last-child {
+    .container .list:last-child {
       margin-right: 0; }
-    .container .book-list article, .container .author-list article {
+    .container .list article {
+      float: left;
+      display: block;
+      margin-right: 2.84259%;
+      width: 100%;
       margin-bottom: 2rem;
       border: .1rem solid gray;
       border-radius: 1rem;
-      padding: 1rem; }
-      .container .book-list article img, .container .author-list article img {
+      padding: 0.5rem; }
+      .container .list article:last-child {
+        margin-right: 0; }
+      .container .list article img {
         float: left;
         display: block;
         margin-right: 2.84259%;
         width: 17.72593%;
         width: 8rem;
         height: 12rem; }
-        .container .book-list article img:last-child, .container .author-list article img:last-child {
+        .container .list article img:last-child {
           margin-right: 0; }
-      .container .book-list article button, .container .author-list article button {
-        float: right;
-        margin-right: 1rem; }
-      .container .book-list article .remove, .container .author-list article .remove {
-        background-color: red; }
-      .container .book-list article .div, .container .author-list article .div {
+      .container .list article .author-img {
+        width: 8rem;
+        height: 10rem; }
+      .container .list article div {
         float: left;
         display: block;
         margin-right: 2.84259%;
-        width: 79.43148%; }
-        .container .book-list article .div:last-child, .container .author-list article .div:last-child {
+        width: 79.43148%;
+        width: 80%; }
+        .container .list article div:last-child {
           margin-right: 0; }
+        .container .list article div button {
+          float: right;
+          margin-right: .5rem; }
+        .container .list article div .remove {
+          background-color: red; }
+        .container .list article div .author-books {
+          border: 1px solid gray;
+          padding: 1rem; }

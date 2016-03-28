@@ -9,12 +9,12 @@ module.exports = function(req, res, next) {
     authorData = data;
   })
   .then(function() {
-    return booksQueries.booksByAuthor()
+    return bookQueries.booksByAuthor()
     .then(function(data) {
       bookData = data;
     });
   })
   .then(function() {
-    res.render('bookViews/bookList', {books: bookData, authors: authorData});
+    res.render('authorViews/authorList', {books: bookData, authors: authorData});
   });
 };
