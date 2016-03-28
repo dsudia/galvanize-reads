@@ -4,9 +4,16 @@ var bookQueries = require('../queries/bookQueries');
 var bookList = require('./bookRoutes/bookList');
 
 router.get('/', function(req, res, next) {
+  var bookCount;
   return bookQueries.bookCount(req, res, next)
   .then(function(data) {
-    res.render('bookViews/bookList', {bookCount: data[0].count});
+    bookCount = data[0].count;
+  })
+  .then(function() {
+    return bookQueries.genreList();
+  })
+  .then(function(data) {
+    res.render('bookViews/bookList', {bookCount: bookCount, genreList: data});
   });
 });
 

@@ -2,10 +2,24 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-
+<div class='centered-navigation' role='banner'>
+  <div class='centered-navigation-wrapper'>
+    <nav role='navigation'>
+      <ul id='js-centered-navigation-menu' class='centered-navigation-menu show'>
+        <li class='nav-link more'>
+          <a href='#'>Genre</a>
+          <ul class='submenu'>
+            {% for genre in genreList %}
+            <li><a href='#'>{{ genre.genre }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 <section class='container'>
   <aside>
-    <nav>
       <ul>
         <a href='/books'><li><h4>Books</h4><img src='http://placehold.it/100x100'></li></a>
         <a href='/authors'><li><h4>Authors</h4><img src='http://placehold.it/100x100'></li></a>

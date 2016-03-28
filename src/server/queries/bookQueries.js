@@ -15,6 +15,10 @@ module.exports = {
 
   bookCount: function() {
     return knex('books').count();
+  },
+
+  genreList: function() {
+    return knex('books').select('genre').groupBy('genre');
   }
 
 
