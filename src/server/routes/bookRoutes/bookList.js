@@ -18,7 +18,6 @@ module.exports = function(req, res, next) {
   .then(function() {
     return bookQueries.bookCount()
     .then(function(data) {
-      console.log(data);
       bookCount = data[0].count;
     });
   })

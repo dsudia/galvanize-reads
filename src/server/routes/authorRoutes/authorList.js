@@ -4,6 +4,7 @@ var authorQueries = require('../../queries/authorQueries');
 module.exports = function(req, res, next) {
   var bookData;
   var authorData;
+  var authorCount;
   return authorQueries.allAuthors()
   .then(function(data) {
     authorData = data;
@@ -15,6 +16,12 @@ module.exports = function(req, res, next) {
     });
   })
   .then(function() {
-    res.render('authorViews/authorList', {books: bookData, authors: authorData});
+    return authorQueries.authorCount()
+    .then(function(data) {
+      authorCount = data[0].count;
+    });
+  })
+  .then(function() {
+    res.render('authorViews/authorList', {books: bookData, authors: authorData, authorCount: authorCount});
   });
 };

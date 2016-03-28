@@ -12,6 +12,10 @@ module.exports = {
   allAuthors: function() {
     return knex('authors').
     orderBy('last_name', 'asc');
+  },
+
+  authorCount: function() {
+    return knex('authors').count();
   }
 
 };
