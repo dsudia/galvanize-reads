@@ -10,9 +10,18 @@
       <div class='logo'>
         <img src='http://placehold.it/100x100'>
       </div>
-      <div class='company-name'>
+      <div class='header-item'>
         <a href='/'><h1>Galvanize Reads</h1></a>
       </div>
+      {% if !user %}
+      <div class='header-item'>
+        <a href='/login'><h1>Login</h3>
+      </div>
+      {% else %}
+      <div class='header-item'>
+        <a href='/logout'><h1>Login</h3>
+      </div>
+      {% endif %}
     </header>
     {% block content %}
     {% endblock %}

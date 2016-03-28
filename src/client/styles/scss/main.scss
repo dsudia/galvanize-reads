@@ -7,7 +7,7 @@ header {
   border-bottom: 1px solid gray;
   margin-bottom: 2rem;
     .logo { @include span-columns(1);}
-    .company-name {
+    .header-item {
       @include span-columns(3);
       font-size: 2.5rem; }
 }
