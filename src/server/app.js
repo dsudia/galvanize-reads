@@ -15,6 +15,8 @@ var knex = require('../../db/knex');
 
 
 // *** routes *** //
+var bookRoutes = require('./routes/books.js');
+var authorRoutes = require('./routes/authors.js');
 var routes = require('./routes/index.js');
 
 
@@ -50,6 +52,8 @@ app.use(passport.session());
 
 // *** main routes *** //
 app.use('/', routes);
+app.use('/books', bookRoutes);
+app.use('/authors', authorRoutes);
 
 
 // catch 404 and forward to error handler
