@@ -193,3 +193,26 @@ img,
 picture {
   margin: 0;
   max-width: 100%; }
+
+header {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto; }
+  header::after {
+    clear: both;
+    content: "";
+    display: table; }
+  header .logo {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 6.17215%; }
+    header .logo:last-child {
+      margin-right: 0; }
+  header .company-name {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%; }
+    header .company-name:last-child {
+      margin-right: 0; }

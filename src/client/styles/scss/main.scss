@@ -1,3 +1,9 @@
 @import "bourbon";
 @import "neat";
 @import "base/base";
+
+header {
+  @include outer-container;
+    .logo { @include span-columns(1);}
+    .company-name { @include span-columns(3); }
+}
