@@ -7,7 +7,8 @@ module.exports = {
     'title',
     'genre',
     'description',
-    'image_url');
+    'image_url')
+    .orderBy('title', 'asc');
   }
 
 

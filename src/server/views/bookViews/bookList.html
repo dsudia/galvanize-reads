@@ -18,6 +18,8 @@
         <img class='book-img' src='{{ book.image_url }}'>
         <div>
           <h3>{{ book.title }}</h3>
+          <button class='edit'>Edit</button>
+          <button class='remove'>Remove</button>
           {% for author in authors %}
             {% if author.book_id === book.id %}
               <p>{{ author.first_name }} {{ author.last_name }}</p>

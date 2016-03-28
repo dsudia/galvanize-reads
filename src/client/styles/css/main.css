@@ -248,15 +248,10 @@ header {
     .container .book-list:last-child {
       margin-right: 0; }
     .container .book-list article {
-      display: block;
       margin-bottom: 2rem;
       border: .1rem solid gray;
       border-radius: 1rem;
       padding: 1rem; }
-      .container .book-list article::after {
-        clear: both;
-        content: "";
-        display: table; }
       .container .book-list article img {
         float: left;
         display: block;
@@ -266,6 +261,11 @@ header {
         height: 12rem; }
         .container .book-list article img:last-child {
           margin-right: 0; }
+      .container .book-list article button {
+        float: right;
+        margin-right: 1rem; }
+      .container .book-list article .remove {
+        background-color: red; }
       .container .book-list article .div {
         float: left;
         display: block;
