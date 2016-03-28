@@ -7,6 +7,11 @@ module.exports = {
     'authors.last_name',
     'author_book_rels.book_id')
     .join('author_book_rels', 'authors.id', 'author_book_rels.author_id');
+  },
+
+  allAuthors: function() {
+    return knex('authors').
+    orderBy('last_name', 'asc');
   }
 
 };
