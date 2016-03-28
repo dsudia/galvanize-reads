@@ -9,6 +9,14 @@ function ensureAuthentication(req, res, next) {
   }
 }
 
+function ensureAdmin(req, res, next) {
+  if (req.user.user_type === 'teacher') {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
+
 function loginRedirect(req, res, next) {
   if (req.user) {
     return res.redirect('/');
@@ -46,4 +54,5 @@ module.exports = {
   loginRedirect: loginRedirect,
   hash: hash,
   checkPassword: checkPassword,
+  ensureAdmin: ensureAdmin
 };
