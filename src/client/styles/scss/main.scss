@@ -25,7 +25,7 @@ header {
         border: 1px solid gray;
         text-align: center;
         margin-bottom: 2rem;}}
-    .book-list {
+    .book-list, .author-list {
       @include span-columns(10);
       article {
         margin-bottom: 2rem;

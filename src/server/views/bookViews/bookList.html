@@ -12,10 +12,10 @@
       </ul>
     </nav>
   </aside>
-  <section class='book-list'>
+  <section class='author-list'>
     {% for book in books %}
       <article>
-        <img class='book-img' src='{{ book.image_url }}'>
+        <img src='{{ author.image_url }}'>
         <div>
           <h3>{{ book.title }}</h3>
           <button class='edit'>Edit</button>

@@ -1,0 +1,37 @@
+{% extends '../layout.html' %}
+
+{% block title %}{% endblock %}
+{% block content %}
+
+<section class='container'>
+  <aside>
+    <nav>
+      <ul>
+        <a href='/books'><li><h4>Books</h4><img src='http://placehold.it/100x100'></li></a>
+        <a href='/authors'><li><h4>Authors</h4><img src='http://placehold.it/100x100'></li></a>
+      </ul>
+    </nav>
+  </aside>
+  <section class='book-list'>
+    {% for author in authors %}
+      <article>
+        <img src='{{ author.image_url }}'>
+        <div>
+          <h3>{{ book.name }}</h3>
+          <button class='edit'>Edit</button>
+          <button class='remove'>Remove</button>
+          <p>{{ author.bio }}</p>
+          <div class='book list'>
+            {% for book in books %}
+              {% if book.author_id === author.id %}
+                <p>{{ book.title }}</p>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </section>
+</section>
+
+{% endblock %}
