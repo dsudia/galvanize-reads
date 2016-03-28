@@ -12,13 +12,14 @@ var session = require('express-session');
 var Promise = require('bluebird');
 var passport = require('./lib/passport');
 var knex = require('../../db/knex');
+var cookieSession = require('cookie-session');
 
 
 // *** routes *** //
 var bookRoutes = require('./routes/books.js');
 var authorRoutes = require('./routes/authors.js');
-var loginRoute = require('./login');
-var logoutRoute = require('./logout');
+var loginRoute = require('./routes/login');
+var logoutRoute = require('./routes/logout');
 var routes = require('./routes/index.js');
 
 
@@ -41,6 +42,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieSession({
+  name: 'Galvanize Reads',
+  keys: [process.env.KEY1, process.env.KEY2, process.env.KEY3]
+}));
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(session({
   secret: process.env.SECRET_KEY || 'change_me',

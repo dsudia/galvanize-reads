@@ -1,5 +1,5 @@
 var passport = require('passport');
-var LocalStrategy = require('passport-local');
+var LocalStrategy = require('passport-local').Strategy;
 var knex = require('../../../db/knex');
 var helpers = require('./helpers');
 
@@ -10,14 +10,17 @@ passport.use(new LocalStrategy({
     knex('users').where('username', username)
       .then(function(data) {
         var user = data[0];
-        if (password === user.password) {
-          return done(null, user, {message: 'You\'re logged in!'});
-        } else {
-          return done(null, false, {message: 'Incorrect password.'});
-        }
-    }).catch(function(err) {
-      return done(null, false, {message: 'Incorrect username.'});
-    });
+        console.log(user);
+        helpers.checkPassword(password, user.password)
+          .then(function() {
+            return done(null, user, {message: 'You\'re logged in!'});
+          })
+          .catch(function(err) {
+            return done(null, false, {message: 'Incorrect password.'});
+          });
+        }).catch(function(err) {
+          return done(null, false, {message: 'Incorrect username.'});
+        });
   }
 ));
 

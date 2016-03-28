@@ -13,13 +13,13 @@
       <div class='header-item'>
         <a href='/'><h1>Galvanize Reads</h1></a>
       </div>
-      {% if !user %}
+      {% if !user.id %}
       <div class='header-item'>
-        <a href='/login'><h1>Login</h3>
+        <a href='/login'><h1>Login</h3></a>
       </div>
       {% else %}
       <div class='header-item'>
-        <a href='/logout'><h1>Login</h3>
+        <a href='/logout'><h1>Logout</h3></a>
       </div>
       {% endif %}
     </header>
