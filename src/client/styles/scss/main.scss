@@ -7,3 +7,10 @@ header {
     .logo { @include span-columns(1);}
     .company-name { @include span-columns(3); }
 }
+
+.container {
+  @include outer-container;
+    .hero-link {
+      @include span-columns(6);
+      text-align: center;}
+}
