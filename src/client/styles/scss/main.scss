@@ -5,7 +5,9 @@
 header {
   @include outer-container(100%);
     .logo { @include span-columns(1);}
-    .company-name { @include span-columns(3); }
+    .company-name {
+      @include span-columns(3);
+      font-size: 2.5rem; }
 }
 
 .container {
@@ -32,7 +34,5 @@ header {
         .div {
           @include span-columns(8 of 10);}
       }
-
-
     }
 }

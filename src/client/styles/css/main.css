@@ -213,7 +213,8 @@ header {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 23.23176%; }
+    width: 23.23176%;
+    font-size: 2.5rem; }
     header .company-name:last-child {
       margin-right: 0; }
 
