@@ -11,6 +11,10 @@ module.exports = {
     return knex('books')
     .select('books.title', 'author_book_rels.author_id')
     .join('author_book_rels', 'books.id', 'author_book_rels.book_id');
+  },
+
+  bookCount: function() {
+    return knex('books').count();
   }
 
 
