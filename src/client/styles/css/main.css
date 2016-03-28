@@ -197,7 +197,9 @@ picture {
 header {
   max-width: 100%;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  border-bottom: 1px solid gray;
+  margin-bottom: 2rem; }
   header::after {
     clear: both;
     content: "";
@@ -238,14 +240,20 @@ header {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 6.17215%; }
+    width: 14.70196%;
+    width: 8rem; }
     .container aside:last-child {
       margin-right: 0; }
+    .container aside li {
+      height: 10rem;
+      border: 1px solid gray;
+      text-align: center;
+      margin-bottom: 2rem; }
   .container .book-list {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 91.4702%; }
+    width: 82.94039%; }
     .container .book-list:last-child {
       margin-right: 0; }
     .container .book-list article {
