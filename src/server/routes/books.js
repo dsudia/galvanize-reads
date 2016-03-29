@@ -4,6 +4,7 @@ var bookQueries = require('../queries/bookQueries');
 var bookList = require('./bookRoutes/bookList');
 var booksByGenre = require('./bookRoutes/booksByGenre');
 var bookSearch = require('./bookRoutes/bookSearch');
+var oneBook = require('./bookRoutes/oneBook');
 
 router.get('/', function(req, res, next) {
   var bookCount;
@@ -35,12 +36,20 @@ router.get('/search', function(req, res, next) {
   });
 });
 
-router.get('/:genre', function(req, res, next) {
-  var genre = req.params.genre;
-  return booksByGenre(genre)
-  .then(function(data) {
-    res.status(200).send(data);
-  });
+router.get('/:param', function(req, res, next) {
+  if (req.params.param === 'genre') {
+    var genre = req.params.param;
+    return booksByGenre(genre)
+    .then(function(data) {
+      res.status(200).send(data);
+    });
+  } else {
+    var id = req.params.param;
+    return oneBook(id)
+    .then(function(data) {
+      res.status(200).send(data);
+    });
+  }
 });
 
 module.exports = router;

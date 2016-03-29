@@ -31,6 +31,10 @@ module.exports = {
   authorSearch: function(searchString) {
     return knex('authors').where('first_name', 'like', '%' + searchString + '%')
     .orWhere('last_name', 'like', '%' + searchString + '%');
+  },
+
+  oneAuthor: function(id) {
+    return knex('authors').where('id', id);
   }
 
 };

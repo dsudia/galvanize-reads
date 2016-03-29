@@ -27,11 +27,10 @@ $(document).ready(function () {
         $('#page-list').append(pageLinkHTML);
       }
       for (i = 0; i < 10; i++) {
-        bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+        bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
         $('#book-list').append(bookDiv);
       }
       var bookAuthors = document.getElementsByClassName('book-authors');
-      console.log(authorData);
       authorData.forEach(function(el, ind, arr) {
         for (i = 0; i < bookAuthors.length; i++) {
           var divId = $(bookAuthors[i]).attr('id');
@@ -47,21 +46,19 @@ $(document).ready(function () {
         if (num === 1) {
           $('#book-list').empty();
           for (i = 0; i < 10; i++) {
-            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
             $('#book-list').append(bookDiv);
           }
         } else {
           $('#book-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (bookData[i]) {
-              console.log(i);
-              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
               $('#book-list').append(bookDiv);
             }
           }
         }
         var bookAuthors = document.getElementsByClassName('book-authors');
-        console.log(authorData);
         authorData.forEach(function(el, ind, arr) {
           for (i = 0; i < bookAuthors.length; i++) {
             var divId = $(bookAuthors[i]).attr('id');
@@ -95,7 +92,7 @@ $('#all-books').on('click', function() {
         $('#page-list').append(pageLinkHTML);
       }
       for (i = 0; i < 10; i++) {
-        bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+        bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
         $('#book-list').append(bookDiv);
       }
       var bookAuthors = document.getElementsByClassName('book-authors');
@@ -114,15 +111,14 @@ $('#all-books').on('click', function() {
         if (num === 1) {
           $('#book-list').empty();
           for (i = 0; i < 10; i++) {
-            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
             $('#book-list').append(bookDiv);
           }
         } else {
           $('#book-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (bookData[i]) {
-              console.log(i);
-              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
               $('#book-list').append(bookDiv);
             }
           }
@@ -164,7 +160,7 @@ $(document).on('click', '.genre-link', function() {
       }
       for (i = 0; i < 10; i++) {
         if ( bookData[i] ) {
-          bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+          bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
           $('#book-list').append(bookDiv);
         }
       }
@@ -184,15 +180,14 @@ $(document).on('click', '.genre-link', function() {
         if (num === 1) {
           $('#book-list').empty();
           for (i = 0; i < 10; i++) {
-            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
             $('#book-list').append(bookDiv);
           }
         } else {
           $('#book-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (bookData[i]) {
-              console.log(i);
-              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
               $('#book-list').append(bookDiv);
             }
           }
@@ -236,7 +231,7 @@ $('#book-search').on('keyup', function() {
       }
       for (i = 0; i < 10; i++) {
         if ( bookData[i] ) {
-          bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+          bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
           $('#book-list').append(bookDiv);
         }
       }
@@ -256,15 +251,14 @@ $('#book-search').on('keyup', function() {
         if (num === 1) {
           $('#book-list').empty();
           for (i = 0; i < 10; i++) {
-            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
             $('#book-list').append(bookDiv);
           }
         } else {
           $('#book-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (bookData[i]) {
-              console.log(i);
-              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
               $('#book-list').append(bookDiv);
             }
           }
@@ -280,6 +274,37 @@ $('#book-search').on('keyup', function() {
             }
           }
         });
+      });
+    }
+  });
+});
+
+// get one author when their name is clicked
+$(document).on('click', '.book-link', function() {
+  var link = $(this).attr('id');
+  $.ajax({
+    url: link,
+    method: 'GET',
+    success: function(data) {
+      $('#book-list').empty();
+      $('#page-list').empty();
+      var bookData = data.bookData;
+      var authorData = data.authorData;
+      var bookDiv;
+      for (i = 0; i < 1; i++) {
+        bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+        $('#book-list').append(bookDiv);
+      }
+      var bookAuthors = document.getElementsByClassName('book-authors');
+      authorData.forEach(function(el, ind, arr) {
+        for (i = 0; i < bookAuthors.length; i++) {
+          var divId = $(bookAuthors[i]).attr('id');
+          var bookId = el.book_id;
+          if (divId == bookId) {
+            var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
+            return $(bookAuthors[i]).append(authorDiv);
+          }
+        }
       });
     }
   });

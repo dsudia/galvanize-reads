@@ -28,6 +28,10 @@ module.exports = {
 
   bookSearch: function(searchString) {
     return knex('books').where('title', 'like', '%' + searchString + '%');
+  },
+
+  oneBook: function(id) {
+    return knex('books').where('id', id);
   }
 
 
