@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('title');
     table.string('genre');
     table.text('description');
-    table.string('book_img');
+    table.string('image_url');
   });
 };
 
