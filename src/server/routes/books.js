@@ -37,15 +37,15 @@ router.get('/search', function(req, res, next) {
 });
 
 router.get('/:param', function(req, res, next) {
-  if (req.params.param === 'genre') {
-    var genre = req.params.param;
-    return booksByGenre(genre)
+  if (typeof req.params.param === 'number') {
+    var id = req.params.param;
+    return oneBook(id)
     .then(function(data) {
       res.status(200).send(data);
     });
   } else {
-    var id = req.params.param;
-    return oneBook(id)
+    var genre = req.params.param;
+    return booksByGenre(genre)
     .then(function(data) {
       res.status(200).send(data);
     });
