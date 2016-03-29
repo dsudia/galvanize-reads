@@ -17,6 +17,7 @@ var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var Promise = require('bluebird');
 var source = require('vinyl-source-stream');
+var jsinspect = require('gulp-jsinspect');
 
 
 /**
@@ -101,6 +102,15 @@ gulp.task('nodemon', function (cb) {
   });
 });
 
+gulp.task('inspect', function () {
+  return gulp.src('app.js')
+    .pipe(jsinspect({
+      'threshold':   20,
+      'identifiers': true,
+      'suppress':    0
+    }));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['lint']);
 });
@@ -156,7 +166,7 @@ gulp.task('connectDist', function (cb) {
 gulp.task('default', function(){
   runSequence(
     ['sass'],
-    ['sass:watch', 'browser-sync', 'watch']
+    ['sass:watch', 'inspect', 'browser-sync', 'watch']
   );
 });
 
