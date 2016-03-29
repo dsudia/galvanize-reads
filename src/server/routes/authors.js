@@ -5,20 +5,11 @@ var authorQueries = require('../queries/authorQueries');
 var authorSearch = require('./authorRoutes/authorSearch');
 var oneAuthor = require('./authorRoutes/oneAuthor');
 
-router.get('/', function(req, res, next) {
-  var bookCount;
-  return authorQueries.authorCount()
-  .then(function(data) {
-    authorCount = data[0].count;
-  })
-  .then(function() {
-    res.render('authorViews/authorList', {authorCount: authorCount});
-  });
-});
 
 router.get('/all', function(req, res, next) {
   return authorList(req, res, next)
   .then(function(data) {
+    console.log(data);
     res.status(200).send(data);
   });
 });

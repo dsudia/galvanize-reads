@@ -6,19 +6,6 @@ var booksByGenre = require('./bookRoutes/booksByGenre');
 var bookSearch = require('./bookRoutes/bookSearch');
 var oneBook = require('./bookRoutes/oneBook');
 
-router.get('/', function(req, res, next) {
-  var bookCount;
-  return bookQueries.bookCount(req, res, next)
-  .then(function(data) {
-    bookCount = data[0].count;
-  })
-  .then(function() {
-    return bookQueries.genreList();
-  })
-  .then(function(data) {
-    res.render('bookViews/bookList', {bookCount: bookCount, genreList: data});
-  });
-});
 
 router.get('/all', function(req, res, next) {
   return bookList(req, res, next)

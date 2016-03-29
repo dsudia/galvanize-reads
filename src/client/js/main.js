@@ -38,8 +38,16 @@ function appendBookDiv (index) {
   }
 }
 
+function appendAuthorDiv(index) {
+  if (index) {
+    authorDiv = '<article class="author-div"><img src="' + index[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + index[i].id + '">' + index[i].first_name + ' ' + index[i].last_name + '</h3></a><br><p>' + index[i].bio + '</p><div class="author-books" id="' + index[i].id + '"><p><em>Books:</em></p></div>';
+    $('#item-list').append(authorDiv);
+  }
+}
+
 function addAuthorsToBook (array) {
   var bookAuthors = document.getElementsByClassName('book-authors');
+  console.log(array);
   array.forEach(function(el, ind, arr) {
     for (i = 0; i < bookAuthors.length; i++) {
       var divId = $(bookAuthors[i]).attr('id');
@@ -47,6 +55,20 @@ function addAuthorsToBook (array) {
       if (divId == bookId) {
         var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
         return $(bookAuthors[i]).append(authorDiv);
+      }
+    }
+  });
+}
+
+function addBooksToAuthor (array) {
+  var authorBooks = document.getElementsByClassName('author-books');
+  array.forEach(function(el, ind, arr) {
+    for (i = 0; i < authorBooks.length; i++) {
+      var divId = $(authorBooks[i]).attr('id');
+      var authorId = el.author_id;
+      if (divId == authorId) {
+        var bookDiv = '<p>' + el.title + '</p>';
+        return $(authorBooks[i]).append(bookDiv);
       }
     }
   });
@@ -68,6 +90,46 @@ function enablePagesForBooks (bookData, authorData) {
     addAuthorsToBook(authorData);
   });
 }
+
+function enablePagesForAuthors (bookData, authorData) {
+  $(document).on('click', '.page-link', function() {
+    var num = $(this).attr('id');
+    $('#author-list').empty();
+    if (num === 1) {
+      for (i = 0; i < 10; i++) {
+        appendAuthorDiv(authorData[i]);
+      }
+    } else {
+      for (i = (num * 10 - 10); i < (num * 10); i++) {
+        appendAuthorDiv(authorData[i]);
+      }
+    }
+    addBooksToAuthor(bookData);
+  });
+}
+
+// get all authors when link is clicked
+$('#all-authors').on('click', function() {
+  $.ajax({
+    url: '/authors/all',
+    method: 'GET',
+    success: function(data) {
+      console.log(data);
+      $('#item-list').empty();
+      $('#page-list').empty();
+      var bookData = data.bookData;
+      var authorData = data.authorData;
+      var numOfPages = ceiling(authorData);
+      appendPages(numOfPages);
+      for (i = 0; i < 10; i++) {
+        console.log(authorData[i]);
+        appendAuthorDiv(authorData[i]);
+      }
+      addBooksToAuthor(bookData);
+      enablePagesForAuthors(bookData, authorData);
+    }
+  });
+});
 
 // get all books when option is clicked
 $('#all-books').on('click', function() {
