@@ -223,6 +223,10 @@ header {
     header .header-item:last-child {
       margin-right: 0; }
 
+.side-img {
+  width: 100px;
+  height: 100px; }
+
 .container {
   max-width: 100%;
   margin-left: auto;
