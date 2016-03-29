@@ -16,6 +16,16 @@ module.exports = {
 
   authorCount: function() {
     return knex('authors').count();
+  },
+
+  authorsByGenre: function(genre) {
+    return knex('authors').select('authors.first_name',
+    'authors.last_name',
+    'author_book_rels.book_id',
+    'books.genre')
+    .join('author_book_rels', 'authors.id', 'author_book_rels.author_id')
+    .join('books', 'books.id', 'author_book_rels.book_id')
+    .where('books.genre', genre);
   }
 
 };

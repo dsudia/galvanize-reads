@@ -10,7 +10,7 @@
           <a href='#'>Genre</a>
           <ul class='submenu'>
             {% for genre in genreList %}
-            <li><a href='#'>{{ genre.genre }}</a></li>
+            <li><a id='{{ genre.genre }}' class='genre-link' href='#'>{{ genre.genre }}</a></li>
             {% endfor %}
           </ul>
         </li>

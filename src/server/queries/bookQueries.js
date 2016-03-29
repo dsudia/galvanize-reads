@@ -19,6 +19,11 @@ module.exports = {
 
   genreList: function() {
     return knex('books').select('genre').groupBy('genre');
+  },
+
+  booksByGenre: function(genre) {
+    return knex('books').where('genre', genre)
+    .orderBy('title', 'asc');
   }
 
 
