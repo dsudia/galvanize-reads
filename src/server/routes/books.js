@@ -36,20 +36,20 @@ router.get('/search', function(req, res, next) {
   });
 });
 
-router.get('/:param', function(req, res, next) {
-  if (typeof req.params.param === 'number') {
-    var id = req.params.param;
-    return oneBook(id)
-    .then(function(data) {
-      res.status(200).send(data);
-    });
-  } else {
-    var genre = req.params.param;
-    return booksByGenre(genre)
-    .then(function(data) {
-      res.status(200).send(data);
-    });
-  }
+router.get('/genres/:genre', function(req, res, next) {
+  var genre = req.params.genre;
+  return booksByGenre(genre)
+  .then(function(data) {
+    res.status(200).send(data);
+  });
+});
+
+router.get('/:id', function(req, res, next) {
+  var id = Number(req.params.id);
+  return oneBook(id)
+  .then(function(data) {
+    res.status(200).send(data);
+  });
 });
 
 module.exports = router;
