@@ -2,7 +2,23 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-
+<header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        <li class='nav-link'><a id='all-authors' href='javascript:void(0)'>All Authors</a></li>
+      </ul>
+    </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+        <form role="search">
+          <input type="text" id='author-search' placeholder="Enter Search" />
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
 <section class='container'>
   <aside>
     <nav>
@@ -15,28 +31,12 @@
   <section>
     <p> Total # of Authors in Library: {{ authorCount }}</p>
   </section>
-  <section class='list'>
-    {% for author in authors %}
-      <article>
-        <img class='author-img' src='{{ author.image_url }}'>
-        <div>
-          <button class='edit'>Edit</button>
-          <button class='remove'>Remove</button>
-          <h3>{{ author.first_name }} {{ author.last_name }}</h3>
-          <br>
-          <p>{{ author.bio }}</p>
-          <div class='author-books'>
-            <p><em>Books:</em></p>
-            {% for book in books %}
-              {% if book.author_id === author.id %}
-                <p>{{ book.title }}</p>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </article>
-    {% endfor %}
+  <section id='author-list' class='list'>
   </section>
 </section>
 
 {% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/js/authorList.js"></script>
+{% endblock $}

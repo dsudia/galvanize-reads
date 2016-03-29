@@ -30,6 +30,17 @@ $(document).ready(function () {
         bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
         $('#book-list').append(bookDiv);
       }
+      var bookAuthors = document.getElementsByClassName('book-authors');
+      authorData.forEach(function(el, ind, arr) {
+        for (i = 0; i < bookAuthors.length; i++) {
+          var divId = $(bookAuthors[i]).attr('id');
+          var bookId = el.book_id;
+          if (divId == bookId) {
+            var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
+            return $(bookAuthors[i]).append(authorDiv);
+          }
+        }
+      });
       $(document).on('click', '.page-link', function() {
         var num = $(this).attr('id');
         if (num === 1) {
