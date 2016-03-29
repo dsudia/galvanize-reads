@@ -28,7 +28,7 @@ $(document).ready(function () {
       }
       for (i = 0; i < 10; i++) {
         bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
-        $('#book-list').append(bookDiv);
+        $('#item-list').append(bookDiv);
       }
       var bookAuthors = document.getElementsByClassName('book-authors');
       authorData.forEach(function(el, ind, arr) {
@@ -44,17 +44,17 @@ $(document).ready(function () {
       $(document).on('click', '.page-link', function() {
         var num = $(this).attr('id');
         if (num === 1) {
-          $('#book-list').empty();
+          $('#item-list').empty();
           for (i = 0; i < 10; i++) {
             bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
-            $('#book-list').append(bookDiv);
+            $('#item-list').append(bookDiv);
           }
         } else {
-          $('#book-list').empty();
+          $('#item-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (bookData[i]) {
               bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="book-link" id="/books/' + bookData[i].id + '">' + bookData[i].title + '</h3></a><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
-              $('#book-list').append(bookDiv);
+              $('#item-list').append(bookDiv);
             }
           }
         }

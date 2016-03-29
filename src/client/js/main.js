@@ -93,7 +93,7 @@ function enablePagesForBooks (bookData, authorData) {
 function enablePagesForAuthors (bookData, authorData) {
   $(document).on('click', '.page-link', function() {
     var num = $(this).attr('id');
-    $('#author-list').empty();
+    $('#item-list').empty();
     if (num === 1) {
       for (i = 0; i < 10; i++) {
         appendAuthorDiv(authorData[i]);
@@ -188,7 +188,7 @@ $(document).on('click', '.author-link', function() {
     url: link,
     method: 'GET',
     success: function(data) {
-      $('#author-list').empty();
+      $('#item-list').empty();
       $('#page-list').empty();
       var bookData = data.bookData;
       var authorData = data.authorData;

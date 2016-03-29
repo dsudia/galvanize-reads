@@ -30,7 +30,7 @@ $(document).ready(function () {
       for (i = 0; i < 10; i++) {
         if (authorData[i]) {
           authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-          $('#author-list').append(authorDiv);
+          $('#item-list').append(authorDiv);
         }
       }
       var authorBooks = document.getElementsByClassName('author-books');
@@ -47,18 +47,18 @@ $(document).ready(function () {
       $(document).on('click', '.page-link', function() {
         var num = $(this).attr('id');
         if (num === 1) {
-          $('#author-list').empty();
+          $('#item-list').empty();
           for (i = 0; i < 10; i++) {
             authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-            $('#author-list').append(authorDiv);
+            $('#item-list').append(authorDiv);
           }
         } else {
-          $('#book-list').empty();
+          $('#item-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (authorData[i]) {
               console.log(i);
               authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-              $('#author-list').append(authorDiv);
+              $('#item-list').append(authorDiv);
             }
           }
         }
@@ -90,7 +90,7 @@ $('#author-search').on('keyup', function() {
     cache: false,
     method: 'GET',
     success: function(data) {
-      $('#author-list').empty();
+      $('#item-list').empty();
       $('#page-list').empty();
       var pageLinkHTML;
       var bookData = data.bookData;
@@ -104,7 +104,7 @@ $('#author-search').on('keyup', function() {
       for (i = 0; i < 10; i++) {
         if (authorData[i]) {
           authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-          $('#author-list').append(authorDiv);
+          $('#item-list').append(authorDiv);
         }
       }
       var authorBooks = document.getElementsByClassName('author-books');
@@ -121,17 +121,17 @@ $('#author-search').on('keyup', function() {
       $(document).on('click', '.page-link', function() {
         var num = $(this).attr('id');
         if (num === 1) {
-          $('#author-list').empty();
+          $('#item-list').empty();
           for (i = 0; i < 10; i++) {
             authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-            $('#author-list').append(authorDiv);
+            $('#item-list').append(authorDiv);
           }
         } else {
-          $('#book-list').empty();
+          $('#item-list').empty();
           for (i = (num * 10 - 10); i < (num * 10); i++) {
             if (authorData[i]) {
               authorDiv = '<article class="author-div"><img src="' + authorData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + authorData[i].id + '">' + authorData[i].first_name + ' ' + authorData[i].last_name + '</h3></a><br><p>' + authorData[i].bio + '</p><div class="author-books" id="' + authorData[i].id + '"><p><em>Books:</em></p></div>';
-              $('#author-list').append(authorDiv);
+              $('#item-list').append(authorDiv);
             }
           }
         }
