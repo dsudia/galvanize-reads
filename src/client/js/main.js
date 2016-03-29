@@ -40,20 +40,19 @@ function appendBookDiv (index) {
 
 function appendAuthorDiv(index) {
   if (index) {
-    authorDiv = '<article class="author-div"><img src="' + index[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + index[i].id + '">' + index[i].first_name + ' ' + index[i].last_name + '</h3></a><br><p>' + index[i].bio + '</p><div class="author-books" id="' + index[i].id + '"><p><em>Books:</em></p></div>';
+    authorDiv = '<article class="author-div"><img src="' + index.image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><a href="javascript:void(0)"><h3 class="author-link" id="/authors/' + index.id + '">' + index.first_name + ' ' + index.last_name + '</h3></a><br><p>' + index.bio + '</p><div class="author-books" id="' + index.id + '"><p><em>Books:</em></p></div>';
     $('#item-list').append(authorDiv);
   }
 }
 
 function addAuthorsToBook (array) {
   var bookAuthors = document.getElementsByClassName('book-authors');
-  console.log(array);
   array.forEach(function(el, ind, arr) {
     for (i = 0; i < bookAuthors.length; i++) {
       var divId = $(bookAuthors[i]).attr('id');
       var bookId = el.book_id;
       if (divId == bookId) {
-        var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
+        var authorDiv = '<p><a href="javascript:void(0)" class="author-link" id="/authors/' + el.id + '">' + el.first_name + ' ' + el.last_name + '</a></p>';
         return $(bookAuthors[i]).append(authorDiv);
       }
     }
@@ -67,7 +66,7 @@ function addBooksToAuthor (array) {
       var divId = $(authorBooks[i]).attr('id');
       var authorId = el.author_id;
       if (divId == authorId) {
-        var bookDiv = '<p>' + el.title + '</p>';
+        var bookDiv = '<p><a href="javascript:void(0)" class="book-link" id="/books/' + el.id + '">' + el.title + '</a></p>';
         return $(authorBooks[i]).append(bookDiv);
       }
     }
@@ -108,6 +107,22 @@ function enablePagesForAuthors (bookData, authorData) {
   });
 }
 
+
+$('#search-field').on('keyup', function() {
+  var searchId = $(this).val();
+  var dataString = 'search=' + searchId;
+  $.ajax({
+    url: '/search',
+    data: dataString,
+    cache: false,
+    method: 'GET',
+    success: function(data) {
+      $('#item-list').empty();
+      $('#page-list').empty();
+    }
+  });
+});
+
 // get all authors when link is clicked
 $('#all-authors').on('click', function() {
   $.ajax({
@@ -122,11 +137,31 @@ $('#all-authors').on('click', function() {
       var numOfPages = ceiling(authorData);
       appendPages(numOfPages);
       for (i = 0; i < 10; i++) {
-        console.log(authorData[i]);
+        console.log(i);
         appendAuthorDiv(authorData[i]);
       }
       addBooksToAuthor(bookData);
       enablePagesForAuthors(bookData, authorData);
+    }
+  });
+});
+
+// get one author when their name is clicked
+$(document).on('click', '.author-link', function() {
+  var link = $(this).attr('id');
+  $.ajax({
+    url: link,
+    method: 'GET',
+    success: function(data) {
+      $('#author-list').empty();
+      $('#page-list').empty();
+      var bookData = data.bookData;
+      var authorData = data.authorData;
+      console.log(authorData);
+      for (i = 0; i < 1; i++) {
+        appendAuthorDiv(authorData[i]);
+      }
+      addBooksToAuthor(bookData);
     }
   });
 });
@@ -188,7 +223,6 @@ $(document).on('click', '.book-link', function() {
       var bookData = data.bookData;
       var authorData = data.authorData;
       for (i = 0; i < 1; i++) {
-        console.log(bookData[i]);
         appendBookDiv(bookData[i]);
       }
       addAuthorsToBook(authorData);
