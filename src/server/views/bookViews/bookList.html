@@ -2,13 +2,14 @@
 
 {% block title %}{% endblock %}
 {% block content %}
-<div class='centered-navigation' role='banner'>
-  <div class='centered-navigation-wrapper'>
-    <nav role='navigation'>
-      <ul id='js-centered-navigation-menu' class='centered-navigation-menu show'>
+<header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
         <li class='nav-link'><a id='all-books' href='javascript:void(0)'>All Books</a></li>
         <li class='nav-link more'>
-          <a href='#'>Sort by Genre</a>
+          <a href='javascript:void(0)'>Sort by Genre</a>
           <ul class='submenu'>
             {% for genre in genreList %}
             <li><a id='{{ genre.genre }}' class='genre-link' href='javascript:void(0)'>{{ genre.genre }}</a></li>
@@ -17,8 +18,16 @@
         </li>
       </ul>
     </nav>
+    <div class="navigation-tools">
+      <div class="search-bar">
+        <form role="search">
+          <input type="text" id='book-search' placeholder="Enter Search" />
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+</header>
+
 <section class='container'>
   <aside>
       <ul>

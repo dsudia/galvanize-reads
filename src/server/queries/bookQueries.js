@@ -24,6 +24,10 @@ module.exports = {
   booksByGenre: function(genre) {
     return knex('books').where('genre', genre)
     .orderBy('title', 'asc');
+  },
+
+  bookSearch: function(searchString) {
+    return knex('books').where('title', 'like', '%' + searchString + '%');
   }
 
 
