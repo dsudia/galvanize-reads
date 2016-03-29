@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var authorList = require('./authorRoutes/authorList');
 var authorQueries = require('../queries/authorQueries');
-var authorSearch = require('./authorRoutes/authorSearch');
 var oneAuthor = require('./authorRoutes/oneAuthor');
 
 
@@ -10,14 +9,6 @@ router.get('/all', function(req, res, next) {
   return authorList(req, res, next)
   .then(function(data) {
     console.log(data);
-    res.status(200).send(data);
-  });
-});
-
-router.get('/search', function(req, res, next) {
-  var searchString = req.query.search;
-  return authorSearch(searchString)
-  .then(function(data) {
     res.status(200).send(data);
   });
 });
