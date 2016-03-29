@@ -108,19 +108,52 @@ function enablePagesForAuthors (bookData, authorData) {
 }
 
 
+var searchTimeout;
+function getItems(time) {
+  clearTimeout(searchTimeout);
+  var $searchField = $('#search-field');
+  if ($searchField.val() !== '') {
+    keyMap = {};
+    searchTimeout = setTimeout(function() {
+      var url = '/search?search=' + $searchField.val();
+      $.ajax({
+        url: url,
+        cache: false,
+        method: 'GET',
+        success: function(data) {
+          $('#item-list').empty();
+          $('#page-list').empty();
+          var bookData = data.bookData;
+          var authorData = data.authorData;
+          var count = (bookData.length + authorData.length);
+          var numOfPages;
+          $('#count').html('Total # of Items in Search Results: ' + count);
+          if (authorData[0] !== undefined) {
+            numOfPages = ceiling(authorData);
+            appendPages(numOfPages);
+            for (i = 0; i < 10; i++) {
+              appendAuthorDiv(authorData[i]);
+            }
+            addBooksToAuthor(bookData);
+            enablePagesForAuthors(bookData, authorData);
+          }
+        if (bookData[0] !== undefined) {
+          numOfPages = ceiling(bookData);
+          appendPages(numOfPages);
+          for (i = 0; i < 10; i++) {
+            appendBookDiv(bookData[i]);
+          }
+          addAuthorsToBook(authorData);
+          enablePagesForBooks(bookData, authorData);
+        }
+        }
+      });
+    }, time);
+  }
+}
+
 $('#search-field').on('keyup', function() {
-  var searchId = $(this).val();
-  var dataString = 'search=' + searchId;
-  $.ajax({
-    url: '/search',
-    data: dataString,
-    cache: false,
-    method: 'GET',
-    success: function(data) {
-      $('#item-list').empty();
-      $('#page-list').empty();
-    }
-  });
+  getItems(300);
 });
 
 // get all authors when link is clicked
@@ -135,6 +168,8 @@ $('#all-authors').on('click', function() {
       var bookData = data.bookData;
       var authorData = data.authorData;
       var numOfPages = ceiling(authorData);
+      var count = (authorData.length);
+      $('#count').html('Total # of Items in Search Results: ' + count);
       appendPages(numOfPages);
       for (i = 0; i < 10; i++) {
         console.log(i);
@@ -157,7 +192,6 @@ $(document).on('click', '.author-link', function() {
       $('#page-list').empty();
       var bookData = data.bookData;
       var authorData = data.authorData;
-      console.log(authorData);
       for (i = 0; i < 1; i++) {
         appendAuthorDiv(authorData[i]);
       }
@@ -177,6 +211,8 @@ $('#all-books').on('click', function() {
       var bookData = data.bookData;
       var authorData = data.authorData;
       var numOfPages = ceiling(bookData);
+      var count = (bookData.length);
+      $('#count').html('Total # of Items in Search Results: ' + count);
       appendPages(numOfPages);
       for (i = 0; i < 10; i++) {
         appendBookDiv(bookData[i]);
@@ -196,11 +232,13 @@ $(document).on('click', '.genre-link', function() {
     url: '/books/genres/' + genre,
     method: 'GET',
     success: function(data) {
-      $('#book-list').empty();
+      $('#item-list').empty();
       var bookData = data.bookData;
       var authorData = data.authorData;
       var bookAuthors = document.getElementsByClassName('book-authors');
       var numOfPages = ceiling(bookData);
+      var count = (bookData.length);
+      $('#count').html('Total # of Items in Search Results: ' + count);
       appendPages(numOfPages);
       for (i = 0; i < 10; i++) {
         appendBookDiv(bookData[i]);
