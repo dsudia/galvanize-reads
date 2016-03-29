@@ -18,20 +18,19 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/all', function(req, res, next) {
+  return bookList(req, res, next)
+  .then(function(data) {
+    res.status(200).send(data);
+  });
+});
 
 router.get('/:genre', function(req, res, next) {
   var genre = req.params.genre;
-  if (genre === 'all') {
-    return bookList(req, res, next)
-    .then(function(data) {
-      res.status(200).send(data);
-    });
-  } else {
-    return booksByGenre(genre)
-    .then(function(data) {
-      res.status(200).send(data);
-    });
-  }
+  return booksByGenre(genre)
+  .then(function(data) {
+    res.status(200).send(data);
+  });
 });
 
 module.exports = router;

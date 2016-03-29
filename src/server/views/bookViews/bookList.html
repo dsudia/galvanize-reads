@@ -6,8 +6,9 @@
   <div class='centered-navigation-wrapper'>
     <nav role='navigation'>
       <ul id='js-centered-navigation-menu' class='centered-navigation-menu show'>
+        <li class='nav-link'><a id='all-books' href='#'>All Books</a></li>
         <li class='nav-link more'>
-          <a href='#'>Genre</a>
+          <a href='#'>Sort by Genre</a>
           <ul class='submenu'>
             {% for genre in genreList %}
             <li><a id='{{ genre.genre }}' class='genre-link' href='#'>{{ genre.genre }}</a></li>

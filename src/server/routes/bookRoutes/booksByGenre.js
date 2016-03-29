@@ -8,7 +8,6 @@ module.exports = function(genre) {
   };
   return bookQueries.booksByGenre(genre)
   .then(function(data) {
-    console.log(data);
     return data.forEach(function(el, ind, arr) {
       tableData.bookData.push(el);
     });
@@ -16,14 +15,12 @@ module.exports = function(genre) {
   .then(function() {
     return authorQueries.authorsByGenre(genre)
     .then(function(data) {
-      console.log(data);
       return data.forEach(function(el, ind, arr) {
         tableData.authorData.push(el);
       });
     });
   })
   .then(function() {
-    console.log(tableData);
     return tableData;
   });
 };
