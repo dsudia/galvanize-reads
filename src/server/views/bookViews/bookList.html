@@ -6,12 +6,12 @@
   <div class='centered-navigation-wrapper'>
     <nav role='navigation'>
       <ul id='js-centered-navigation-menu' class='centered-navigation-menu show'>
-        <li class='nav-link'><a id='all-books' href='#'>All Books</a></li>
+        <li class='nav-link'><a id='all-books' href='javascript:void(0)'>All Books</a></li>
         <li class='nav-link more'>
           <a href='#'>Sort by Genre</a>
           <ul class='submenu'>
             {% for genre in genreList %}
-            <li><a id='{{ genre.genre }}' class='genre-link' href='#'>{{ genre.genre }}</a></li>
+            <li><a id='{{ genre.genre }}' class='genre-link' href='javascript:void(0)'>{{ genre.genre }}</a></li>
             {% endfor %}
           </ul>
         </li>
@@ -32,6 +32,16 @@
   </section>
   <section id='book-list' class='list'>
   </section>
+  <div class="pagination">
+    <ul>
+      <li class="page-prev"><a href="">Prev</a></li>
+      <li>
+        <ul id="page-list">
+        </ul>
+      </li>
+      <li class="page-next"><a href="">Next</a></li>
+    </ul>
+  </div>
 </section>
 
 {% endblock %}

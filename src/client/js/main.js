@@ -7,22 +7,48 @@ $(document).on('ready', function() {
     url: '/books/all',
     method: 'GET',
     success: function(data) {
+      var pageLinkHTML;
       var bookData = data.bookData;
       var authorData = data.authorData;
-      bookData.forEach(function(el, ind, arr) {
-        var bookDiv =  '<article><img src="' + el.image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + el.title + '</h3><section class="book-authors" id="' + el.id + '"></section><p>Genre: <em>' + el.genre + '</em></p><p>' + el.description + '</p></div></article>';
-        return $('#book-list').append(bookDiv);
-      });
-      var bookAuthors = document.getElementsByClassName('book-authors');
-      authorData.forEach(function(el, ind, arr) {
-        for (i = 0; i < bookAuthors.length; i++) {
-          var divId = $(bookAuthors[i]).attr('id');
-          var bookId = el.book_id;
-          if (divId == bookId) {
-            var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
-            return $(bookAuthors[i]).append(authorDiv);
+      var numOfPages = Math.ceil((bookData.length / 10));
+      var bookDiv;
+      for (i = 1; i <= numOfPages; i++ ){
+        pageLinkHTML = '<li><a class="page-link" id="' + i +'" href="javascript:void(0)">' + i + '</a></li>';
+        $('#page-list').append(pageLinkHTML);
+      }
+      for (i = 0; i < 10; i++) {
+        bookDiv =  '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+        $('#book-list').append(bookDiv);
+      }
+      $(document).on('click', '.page-link', function() {
+        var num = $(this).attr('id');
+        if (num === 1) {
+          $('#book-list').empty();
+          for (i = 0; i < 10; i++) {
+            bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+            $('#book-list').append(bookDiv);
+          }
+        } else {
+          $('#book-list').empty();
+          for (i = (num * 10 - 10); i < (num * 10); i++) {
+            if (bookData[i]) {
+              console.log(i);
+              bookDiv = '<article class="book-div"><img src="' + bookData[i].image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + bookData[i].title + '</h3><section class="book-authors" id="' + bookData[i].id + '"></section><p>Genre: <em>' + bookData[i].genre + '</em></p><p>' + bookData[i].description + '</p></div></article>';
+              $('#book-list').append(bookDiv);
+            }
           }
         }
+        var bookAuthors = document.getElementsByClassName('book-authors');
+        authorData.forEach(function(el, ind, arr) {
+          for (i = 0; i < bookAuthors.length; i++) {
+            var divId = $(bookAuthors[i]).attr('id');
+            var bookId = el.book_id;
+            if (divId == bookId) {
+              var authorDiv = '<p>' + el.first_name + ' ' + el.last_name + '</p>';
+              return $(bookAuthors[i]).append(authorDiv);
+            }
+          }
+        });
       });
     }
   });
@@ -37,7 +63,7 @@ $(document).on('ready', function() {
         var bookData = data.bookData;
         var authorData = data.authorData;
         bookData.forEach(function(el, ind, arr) {
-          var bookDiv =  '<article><img src="' + el.image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + el.title + '</h3><section class="book-authors" id="' + el.id + '"></section><p>Genre: <em>' + el.genre + '</em></p><p>' + el.description + '</p></div></article>';
+          var bookDiv =  '<article class="book-div"><img src="' + el.image_url + '"><div><button class="edit">Edit</button><button class="remove">Remove</button><h3>' + el.title + '</h3><section class="book-authors" id="' + el.id + '"></section><p>Genre: <em>' + el.genre + '</em></p><p>' + el.description + '</p></div></article>';
           return $('#book-list').append(bookDiv);
         });
         var bookAuthors = document.getElementsByClassName('book-authors');
@@ -51,6 +77,10 @@ $(document).on('ready', function() {
             }
           }
         });
+        var bookDivs = document.getElementsByClassName('book-div');
+        var numOfPages = (bookDivs.length / 10);
+        var pagination = '<div class="pagination"><ul><li class="page-prev"><a href="">Prev</a></li><li><ul id="pageList"></ul></li><li class="page-next"><a href="">Next</a></li></ul></div>';
+        $('#book-list').append(pagination);
       }
     });
   });
