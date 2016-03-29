@@ -209,7 +209,9 @@ header {
     float: left;
     display: block;
     margin-right: 2.35765%;
-    width: 6.17215%; }
+    width: 6.17215%;
+    width: 150px;
+    height: 150px; }
     header .logo:last-child {
       margin-right: 0; }
   header .header-item {
@@ -237,6 +239,9 @@ header {
     text-align: center; }
     .container .hero-link:last-child {
       margin-right: 0; }
+    .container .hero-link img {
+      width: 800px;
+      height: 600px; }
   .container aside {
     float: left;
     display: block;

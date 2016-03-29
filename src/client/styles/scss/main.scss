@@ -6,7 +6,10 @@ header {
   @include outer-container(100%);
   border-bottom: 1px solid gray;
   margin-bottom: 2rem;
-    .logo { @include span-columns(1);}
+    .logo {
+      @include span-columns(1);
+      width: 150px;
+      height: 150px;}
     .header-item {
       @include span-columns(4);
       font-size: 2.5rem; }
@@ -16,7 +19,10 @@ header {
   @include outer-container(100%);
     .hero-link {
       @include span-columns(6);
-      text-align: center;}
+      text-align: center;
+      img {
+        width: 800px;
+        height: 600px;}}
     aside {
       @include span-columns(2);
       width: 8rem;
